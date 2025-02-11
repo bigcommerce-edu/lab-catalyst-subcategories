@@ -14,6 +14,27 @@ export const SubcategoryList = (
   }
 ) => {
   return (
-    <div></div>
+    <div className="@container 
+      mx-auto max-w-screen-2xl px-4 py-10 
+      @xl:px-6 @xl:py-14 @4xl:px-8 @4xl:py-12"
+    >
+      <h1 className="font-heading 
+        text-3xl font-medium leading-none 
+        @lg:text-4xl @2xl:text-5xl
+        text-contrast-400"
+      >
+          {title}
+      </h1>
+      <div className="w-full @container my-4">
+        <div className="mx-auto 
+          grid grid-cols-1 gap-4 
+          @lg:grid-cols-2 @2xl:grid-cols-3"
+        >
+          {subcategories.map((subcategory) => (
+            <div key={subcategory.entityId}></div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
