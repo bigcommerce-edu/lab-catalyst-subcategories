@@ -21,7 +21,7 @@ export const SubcategoryList = (
       <h1 className="font-heading 
         text-3xl font-medium leading-none 
         @lg:text-4xl @2xl:text-5xl
-        text-contrast-400"
+        text-subcategoryListHeading"
       >
           {title}
       </h1>
@@ -31,8 +31,8 @@ export const SubcategoryList = (
           @lg:grid-cols-2 @2xl:grid-cols-3"
 
           style={{
-            '--card-light-text': 'hsl(0 0% 0%)',
-            '--card-border-radius': '0',
+            '--card-light-text': 'var(--subcategory-list-light-text)',
+            '--card-border-radius': 'var(--subcategory-list-border-radius)',
           } as CSSProperties}
         >
           {subcategories.map((subcategory) => (
