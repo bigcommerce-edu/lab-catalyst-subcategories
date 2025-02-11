@@ -22,6 +22,8 @@ import { fetchFacetedSearch } from '../../fetch-faceted-search';
 import { CategoryViewed } from './_components/category-viewed';
 import { getCategoryPageData } from './page-data';
 
+import { getSubcategories } from '~/components/subcategory-list/component-data';
+
 const cacheCategoryFacetedSearch = cache((categoryId: string) => {
   return { category: Number(categoryId) };
 });
@@ -273,9 +275,19 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function Category(props: Props) {
-  const { locale } = await props.params;
+  const { locale, slug } = await props.params;
 
   setRequestLocale(locale);
+
+  const subcategories = await getSubcategories({
+    categoryId: Number(slug),
+  });
+
+  if (subcategories.length > 0) {
+    return <div className="@container text-2xl p-8">
+      Subcategory List Placeholder
+    </div>;
+  }
 
   return (
     <>
