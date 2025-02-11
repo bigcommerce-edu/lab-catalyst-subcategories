@@ -31,7 +31,16 @@ export const SubcategoryList = (
           @lg:grid-cols-2 @2xl:grid-cols-3"
         >
           {subcategories.map((subcategory) => (
-            <div key={subcategory.entityId}></div>
+            <Card
+              className=''
+              href={subcategory.path}
+              image={(!subcategory.image) ? undefined : {
+                src: subcategory.image?.url ?? '',
+                alt: subcategory.image?.altText ?? '',
+              }}
+              key={subcategory.entityId}
+              title={`${subcategory.name} (${subcategory.productCount})`}
+            />
           ))}
         </div>
       </div>
