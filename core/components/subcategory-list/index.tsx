@@ -29,6 +29,11 @@ export const SubcategoryList = (
         <div className="mx-auto 
           grid grid-cols-1 gap-4 
           @lg:grid-cols-2 @2xl:grid-cols-3"
+
+          style={{
+            '--card-light-text': 'hsl(0 0% 0%)',
+            '--card-border-radius': '0',
+          } as CSSProperties}
         >
           {subcategories.map((subcategory) => (
             <Card
