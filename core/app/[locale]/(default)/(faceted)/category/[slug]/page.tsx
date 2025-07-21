@@ -23,6 +23,7 @@ import { CategoryViewed } from './_components/category-viewed';
 import { getCategoryPageData } from './page-data';
 
 import { getSubcategories } from '~/components/subcategory-list/component-data';
+import { SubcategoryList } from '~/components/subcategory-list';
 
 const getCachedCategory = cache((categoryId: number) => {
   return {
@@ -246,9 +247,10 @@ export default async function Category(props: Props) {
   }, customerAccessToken);
 
   if (subcategories.length > 0) {
-    return <div className="@container text-2xl p-8">
-      Subcategory List Placeholder
-    </div>;
+    return <SubcategoryList
+      subcategories={subcategories}
+      title={category.name}
+    />;
   }
 
   return (
