@@ -23,6 +23,8 @@ import { fetchFacetedSearch } from '../../fetch-faceted-search';
 import { CategoryViewed } from './_components/category-viewed';
 import { getCategoryPageData } from './page-data';
 
+import { getSubcategories } from '~/components/subcategory-list/component-data';
+
 const getCachedCategory = cache((categoryId: number) => {
   return {
     category: categoryId,
@@ -238,6 +240,17 @@ export default async function Category(props: Props) {
       href: product.path,
     }));
   });
+
+
+  const subcategories = await getSubcategories({
+    categoryId: Number(slug),
+  }, customerAccessToken);
+
+  if (subcategories.length > 0) {
+    return <div className="@container text-2xl p-8">
+      Subcategory List Placeholder
+    </div>;
+  }
 
   return (
     <>
