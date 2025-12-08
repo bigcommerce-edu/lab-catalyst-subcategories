@@ -239,6 +239,10 @@ export default async function Category(props: Props) {
     }));
   });
 
+  // TODO: Await the fetch of subcategories and preempt the main component JSX if they exist
+  //  - Use getSubcategories to fetch
+  //  - If there are subcategories, immediately return a placeholder
+
   return (
     <>
       <Slot
