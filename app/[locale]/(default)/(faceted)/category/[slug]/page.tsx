@@ -11,6 +11,7 @@ import { ProductListSkeleton } from '@/vibes/soul/sections/product-list';
 import { ProductsListSection } from '@/vibes/soul/sections/products-list-section';
 import { getFilterParsers } from '@/vibes/soul/sections/products-list-section/filter-parsers';
 import { getSessionCustomerAccessToken } from '~/auth';
+import { SubcategoryList } from '~/components/subcategory-list';
 import { getSubcategories } from '~/components/subcategory-list/component-data';
 import { facetsTransformer } from '~/data-transformers/facets-transformer';
 import { pageInfoTransformer } from '~/data-transformers/page-info-transformer';
@@ -285,9 +286,7 @@ export default async function Category(props: Props) {
       >
         {(subcategories) =>
           subcategories.length > 0 ? (
-            // TODO: Replace the placeholder with the `SubcategoryList` component
-            //  - Pass in the category name and subcategories that have been fetched as props
-            <div className="p-8 text-2xl @container">Subcategory List Placeholder</div>
+            <SubcategoryList subcategories={subcategories} title={category.name} />
           ) : (
             <ProductsListSection
               breadcrumbs={breadcrumbs}
