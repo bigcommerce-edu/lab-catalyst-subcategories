@@ -26,12 +26,15 @@ export const SubcategoryList = (
           {title}
       </h1>
       <div className="w-full @container my-4">
-        {/* TODO: Add CSS vars to the opening tag, to modify the `Card` theme implementation 
-              - Use the `--card-light-text` and `--card-border-radius` CSS vars to override defaults
-        */}
         <div className="mx-auto 
           grid grid-cols-1 gap-4 
           @lg:grid-cols-2 @2xl:grid-cols-3"
+
+          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+          style={{
+            '--card-light-text': 'hsl(50 100% 30%)',
+            '--card-border-radius': '0',
+          } as CSSProperties}
         >
           {subcategories.map((subcategory) => (
             <Card
