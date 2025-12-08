@@ -7,9 +7,11 @@ import { cache } from 'react';
 
 import { Stream, Streamable } from '@/vibes/soul/lib/streamable';
 import { createCompareLoader } from '@/vibes/soul/primitives/compare-drawer/loader';
+import { ProductListSkeleton } from '@/vibes/soul/sections/product-list';
 import { ProductsListSection } from '@/vibes/soul/sections/products-list-section';
 import { getFilterParsers } from '@/vibes/soul/sections/products-list-section/filter-parsers';
 import { getSessionCustomerAccessToken } from '~/auth';
+import { getSubcategories } from '~/components/subcategory-list/component-data';
 import { facetsTransformer } from '~/data-transformers/facets-transformer';
 import { pageInfoTransformer } from '~/data-transformers/page-info-transformer';
 import { productCardTransformer } from '~/data-transformers/product-card-transformer';
@@ -265,8 +267,9 @@ export default async function Category(props: Props) {
     }));
   });
 
-  // TODO: Fetch subcategories as a streamable, so the page doesn't wait on the request
-  //  - Use `Streamable.from` with `getSubcategories`, passing `categoryId` and `customerAccessToken`
+  const streamableSubcategories = Streamable.from(() =>
+    getSubcategories({ categoryId }, customerAccessToken),
+  );
 
   return (
     <>
@@ -274,45 +277,54 @@ export default async function Category(props: Props) {
         label={`${category.name} top content`}
         snapshotId={`category-${categoryId}-top-content`}
       />
-      {/* TODO: Wrap `ProductsListSection` in a `Stream` of the subcategories
-            - Use `ProductListSkeleton` from `@/vibes/soul/sections/product-list` as the fallback
-            - If there are subcategories, render a placeholder instead of `ProductsListSection`
-      */}
-      <ProductsListSection
-        breadcrumbs={breadcrumbs}
-        compareLabel={t('Compare.compare')}
-        compareProducts={streamableCompareProducts}
-        emptyStateSubtitle={t('Category.Empty.subtitle')}
-        emptyStateTitle={t('Category.Empty.title')}
-        filterLabel={t('FacetedSearch.filters')}
-        filters={streamableFilters}
-        filtersPanelTitle={t('FacetedSearch.filters')}
-        maxCompareLimitMessage={t('Compare.maxCompareLimit')}
-        maxItems={MAX_COMPARE_LIMIT}
-        paginationInfo={streamablePagination}
-        products={streamableProducts}
-        rangeFilterApplyLabel={t('FacetedSearch.Range.apply')}
-        removeLabel={t('Compare.remove')}
-        resetFiltersLabel={t('FacetedSearch.resetFilters')}
-        showCompare={productComparisonsEnabled}
-        showRating={showRating}
-        sortDefaultValue={categoryDefaultSort}
-        sortLabel={t('SortBy.sortBy')}
-        sortOptions={[
-          { value: 'featured', label: t('SortBy.featuredItems') },
-          { value: 'newest', label: t('SortBy.newestItems') },
-          { value: 'best_selling', label: t('SortBy.bestSellingItems') },
-          { value: 'a_to_z', label: t('SortBy.aToZ') },
-          { value: 'z_to_a', label: t('SortBy.zToA') },
-          { value: 'best_reviewed', label: t('SortBy.byReview') },
-          { value: 'lowest_price', label: t('SortBy.priceAscending') },
-          { value: 'highest_price', label: t('SortBy.priceDescending') },
-          { value: 'relevance', label: t('SortBy.relevance') },
-        ]}
-        sortParamName="sort"
-        title={category.name}
-        totalCount={streamableTotalCount}
-      />
+      <Stream
+        fallback={
+          <ProductListSkeleton className="mx-auto max-w-screen-2xl px-4 py-10 @xl:px-6 @xl:py-14 @4xl:px-8 @4xl:py-12" />
+        }
+        value={streamableSubcategories}
+      >
+        {(subcategories) =>
+          subcategories.length > 0 ? (
+            <div className="p-8 text-2xl @container">Subcategory List Placeholder</div>
+          ) : (
+            <ProductsListSection
+              breadcrumbs={breadcrumbs}
+              compareLabel={t('Compare.compare')}
+              compareProducts={streamableCompareProducts}
+              emptyStateSubtitle={t('Category.Empty.subtitle')}
+              emptyStateTitle={t('Category.Empty.title')}
+              filterLabel={t('FacetedSearch.filters')}
+              filters={streamableFilters}
+              filtersPanelTitle={t('FacetedSearch.filters')}
+              maxCompareLimitMessage={t('Compare.maxCompareLimit')}
+              maxItems={MAX_COMPARE_LIMIT}
+              paginationInfo={streamablePagination}
+              products={streamableProducts}
+              rangeFilterApplyLabel={t('FacetedSearch.Range.apply')}
+              removeLabel={t('Compare.remove')}
+              resetFiltersLabel={t('FacetedSearch.resetFilters')}
+              showCompare={productComparisonsEnabled}
+              showRating={showRating}
+              sortDefaultValue={categoryDefaultSort}
+              sortLabel={t('SortBy.sortBy')}
+              sortOptions={[
+                { value: 'featured', label: t('SortBy.featuredItems') },
+                { value: 'newest', label: t('SortBy.newestItems') },
+                { value: 'best_selling', label: t('SortBy.bestSellingItems') },
+                { value: 'a_to_z', label: t('SortBy.aToZ') },
+                { value: 'z_to_a', label: t('SortBy.zToA') },
+                { value: 'best_reviewed', label: t('SortBy.byReview') },
+                { value: 'lowest_price', label: t('SortBy.priceAscending') },
+                { value: 'highest_price', label: t('SortBy.priceDescending') },
+                { value: 'relevance', label: t('SortBy.relevance') },
+              ]}
+              sortParamName="sort"
+              title={category.name}
+              totalCount={streamableTotalCount}
+            />
+          )
+        }
+      </Stream>
       <Slot
         label={`${category.name} bottom content`}
         snapshotId={`category-${categoryId}-bottom-content`}
