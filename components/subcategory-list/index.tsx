@@ -16,25 +16,21 @@ export const SubcategoryList = ({
       mx-auto max-w-screen-2xl px-4 py-10
       @xl:px-6 @xl:py-14 @4xl:px-8 @4xl:py-12"
     >
-      {/* TODO: Replace the generic `text-contrast-400` class with the new subcategory-specific color */}
       <h1 className="font-heading
         text-3xl font-medium leading-none
         @lg:text-4xl @2xl:text-5xl
-        text-contrast-400"
+        text-subcategoryListHeading"
       >
         {title}
       </h1>
       <div className="my-4 w-full @container">
-        {/* TODO: Replace the hard-coded value with a CSS var in `style`
-              - Use `--subcategory-list-light-text`, wrapped in `hsl()`, to override `--card-light-text`
-        */}
         <div className="mx-auto
           grid grid-cols-1 gap-4
           @lg:grid-cols-2 @2xl:grid-cols-3"
           style={
             // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
             {
-              '--card-light-text': 'hsl(50 100% 30%)',
+              '--card-light-text': 'hsl(var(--subcategory-list-light-text))',
             } as CSSProperties
           }
         >
