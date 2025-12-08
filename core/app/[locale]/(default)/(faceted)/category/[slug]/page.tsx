@@ -246,6 +246,8 @@ export default async function Category(props: Props) {
   }, customerAccessToken);
 
   if (subcategories.length > 0) {
+    // TODO: Replace the placeholder with the `SubcategoryList` component
+    //  - Pass in the category name and subcategories that have been fetched as props
     return <div className="@container text-2xl p-8">
       Subcategory List Placeholder
     </div>;
