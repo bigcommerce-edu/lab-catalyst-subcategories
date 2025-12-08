@@ -78,6 +78,7 @@ const config = {
         },
       },
       colors: {
+        // TODO: Add a `subcategoryListHeading` color based on the `--subcategory-list-heading` CSS var
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           highlight: 'color-mix(in oklab, hsl(var(--primary)), white 75%)',
