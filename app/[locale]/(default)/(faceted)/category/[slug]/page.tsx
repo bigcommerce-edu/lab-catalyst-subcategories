@@ -265,12 +265,19 @@ export default async function Category(props: Props) {
     }));
   });
 
+  // TODO: Fetch subcategories as a streamable, so the page doesn't wait on the request
+  //  - Use `Streamable.from` with `getSubcategories`, passing `categoryId` and `customerAccessToken`
+
   return (
     <>
       <Slot
         label={`${category.name} top content`}
         snapshotId={`category-${categoryId}-top-content`}
       />
+      {/* TODO: Wrap `ProductsListSection` in a `Stream` of the subcategories
+            - Use `ProductListSkeleton` from `@/vibes/soul/sections/product-list` as the fallback
+            - If there are subcategories, render a placeholder instead of `ProductsListSection`
+      */}
       <ProductsListSection
         breadcrumbs={breadcrumbs}
         compareLabel={t('Compare.compare')}
