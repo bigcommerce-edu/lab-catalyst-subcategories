@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1
+
+_Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.6.3_
+
+### Summary
+
+Restructured history to move TODO comments immediately before the code that resolves them.
+
 ## 1.0.0
 
 _Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.6.3_
