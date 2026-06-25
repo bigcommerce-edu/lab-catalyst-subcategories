@@ -24,6 +24,9 @@ export const SubcategoryList = ({
         {title}
       </h1>
       <div className="my-4 w-full @container">
+        {/* TODO: Add CSS vars to the opening tag, to modify the `Card` theme implementation
+              - Use the `--card-light-text` CSS var to override the default
+        */}
         <div className="mx-auto
           grid grid-cols-1 gap-4
           @lg:grid-cols-2 @2xl:grid-cols-3"
