@@ -31,6 +31,11 @@ export const SubcategoryList = (
           @lg:grid-cols-2 @2xl:grid-cols-3"
         >
           {subcategories.map((subcategory) => (
+            // TODO: Replace this placeholder with a `Card` with subcategory information
+            //  - Use the `Card` component from `@/vibes/soul/primitives/card`
+            //  - Continue using `entityId` as the key
+            //  - Pass in `href`, `image`, and `title` props
+            //  - Include the subcategory's `productCount` in the title
             <div key={subcategory.entityId}></div>
           ))}
         </div>
