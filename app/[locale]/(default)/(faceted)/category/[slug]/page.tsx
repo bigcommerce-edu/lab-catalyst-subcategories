@@ -285,6 +285,8 @@ export default async function Category(props: Props) {
       >
         {(subcategories) =>
           subcategories.length > 0 ? (
+            // TODO: Replace the placeholder with the `SubcategoryList` component
+            //  - Pass in the category name and subcategories that have been fetched as props
             <div className="p-8 text-2xl @container">Subcategory List Placeholder</div>
           ) : (
             <ProductsListSection
