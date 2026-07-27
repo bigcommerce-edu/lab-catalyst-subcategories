@@ -22,6 +22,7 @@
 # misc
 .DS_Store
 *.pem
+settings.local.json
 
 # debug
 npm-debug.log*
@@ -41,6 +42,8 @@ next-env.d.ts
 
 # generated
 client/generated
+*graphql.d.ts
+*.graphql
 
 # next-intl
 messages/*.d.json.ts
@@ -62,3 +65,5 @@ build-config.json
 # written by `npm run generate`. Commit them, so lint, typecheck and editor
 # tooling work without store credentials. See "GraphQL Schema and Types" in
 # README.md before adding them here.
+
+ARTIFACTS/*
