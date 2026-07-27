@@ -22,6 +22,7 @@
 # misc
 .DS_Store
 *.pem
+settings.local.json
 
 # debug
 npm-debug.log*
@@ -41,6 +42,8 @@ next-env.d.ts
 
 # generated
 client/generated
+*graphql.d.ts
+*.graphql
 
 # next-intl
 messages/*.d.json.ts
@@ -57,3 +60,5 @@ build-config.json
 
 # Catalyst CLI config
 .bigcommerce
+
+ARTIFACTS/*
