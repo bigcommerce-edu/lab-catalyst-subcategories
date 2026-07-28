@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.1.1
+
+_Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.10.0_
+
+### Summary
+
+Upgrade the base framework from Catalyst 1.6.3 to 1.10.0.
+
+## 1.1.0
+
+_Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.6.3_
+
+### Summary
+
+Rebuilt the progressive history using the Catalyst CLI installer instead of a Git clone, changing the framework's on-disk layout.
+
+### Changes
+
+- Switch the framework install command from a Git clone of `bigcommerce/catalyst` to `pnpm create @bigcommerce/catalyst@latest` (plus a `pnpm approve-builds --all` step). See the updated "Framework Install Command" section in `AGENTS.md`.
+- The Catalyst CLI installs the project at the root instead of under a `core/` subdirectory; every file path touched by later lab-step commits moved accordingly.
+- The Catalyst CLI's install also ships its own root-level `AGENTS.md` and `CHANGELOG.md` (previously only `README.md`). The "Rename README" commit now also renames these to `AGENTS-Catalyst.md` and `CHANGELOG-Catalyst.md`, matching the existing `README-Catalyst.md` pattern, so this project's own `AGENTS.md`/`CHANGELOG.md` can still be added fresh in the end-metadata commit.
+- Add `*.graphql.d.ts` and `*.graphql` to `.gitignore`.
+
 ## 1.0.1
 
 _Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.6.3_

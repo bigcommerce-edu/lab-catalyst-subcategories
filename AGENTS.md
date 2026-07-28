@@ -61,12 +61,20 @@ When creating a clean orphan branch, the following additional file paths should 
 
 * `.env.local`
 
+## Framework-Shipped Docs Renamed
+
+Catalyst ships its own `README.md`, `AGENTS.md`, and `CHANGELOG.md` at the project root. To make room for this project's own versions of these files (added in the end-metadata commit), the "Rename README" commit renames all three to a `-Catalyst` suffix (`README-Catalyst.md`, `AGENTS-Catalyst.md`, `CHANGELOG-Catalyst.md`). If a future framework install ships additional root-level docs under the project's own filenames, extend this same rename pattern.
+
 ## Framework Install Command
 
-The base framework is Catalyst. Clone Catalyst from GitHub:
+The base framework is Catalyst. Install it via the Catalyst CLI, in a temporary directory outside the project repo:
 
 ```
-git clone git@github.com:bigcommerce/catalyst.git --branch @bigcommerce/catalyst-makeswift@<version>
+pnpm create @bigcommerce/catalyst@latest --store-hash "--" --channel-id 1 --storefront-token "--" --access-token "--" --gh-ref @bigcommerce/catalyst-makeswift@<version> --project-name=<tmp-directory>
 ```
 
-After re-installing the framework, make sure an appropriate version of Node.js is installed according to `.nvmrc` and use `pnpm install` to install dependencies.
+Where `<version>` is the version the user specified and `<tmp-directory>` is the temporary directory where you are doing the installation.
+
+Because the command provisions its own `.env.local`, back up any pre-existing `.env.local` before running it and restore it afterward — the CLI's generated version should be discarded.
+
+After the main install command completes, run `pnpm approve-builds --all` before making the initial commit. An explicit `pnpm install` is not needed; the install command handles it.
