@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.2
+
+_Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.11.0_
+
+### Summary
+
+Upgrade the base framework from Catalyst 1.10.0 to 1.11.0.
+
+### Changes
+
+- Rebuild the progressive history on a clean Catalyst 1.11.0 install; all lab-step commits replay unchanged.
+- Catalyst 1.11.0 adds a trailing comment block to its shipped `.gitignore` documenting that the generated `bigcommerce.graphql` and `bigcommerce-graphql.d.ts` files are deliberately not ignored. This project's `.gitignore` keeps its own `*.graphql` / `*graphql.d.ts` rules from 1.1.0, so those generated files stay ignored here; the framework comment is retained above the project's `ARTIFACTS/*` rule.
+
 ## 1.1.1
 
 _Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.10.0_
