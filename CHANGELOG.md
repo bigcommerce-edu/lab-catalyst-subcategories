@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.3
+
+_Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.15.0_
+
+### Summary
+
+Upgrade the base framework from Catalyst 1.11.0 to 1.15.0, and align the subcategory list with Catalyst page, streaming, theming, and formatting conventions.
+
+- Rebuild the progressive history on a clean Catalyst 1.15.0 install
+- Render the subcategory list in place of the products grid instead of returning early from the category page, so the Makeswift top/bottom slots and the `CategoryViewed` analytics event still render on categories that have subcategories.
+- Stream the subcategory query instead of awaiting it before render. The choice between the subcategory list and the products grid now happens inside a `Stream`, using the framework's `ProductListSkeleton` as the loading fallback.
+- Store the subcategory list theme colors (`--subcategory-list-heading`, `--subcategory-list-light-text`) as bare HSL triplets and wrap them in `hsl()` where they're consumed, matching the framework's theme-variable convention.
+- Remove the subcategory list's card border-radius override (`--subcategory-list-border-radius`).
+
 ## 1.1.2
 
 _Based on Catalyst (`@bigcommerce/catalyst-makeswift`) 1.11.0_
