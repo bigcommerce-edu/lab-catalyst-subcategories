@@ -66,4 +66,7 @@ build-config.json
 # tooling work without store credentials. See "GraphQL Schema and Types" in
 # README.md before adding them here.
 
+# Verification evidence (see .agents/skills/verify-catalyst)
+/.verification
+
 ARTIFACTS/*
