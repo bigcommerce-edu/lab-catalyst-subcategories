@@ -5,34 +5,29 @@ import { graphql, VariablesOf } from '~/client/graphql';
 import { revalidate } from '~/client/revalidate-target';
 
 // Define the GraphQL query string for fetching a category's subcategories
-const SubcategoriesQuery = graphql(
-  `
-    query SubcategoriesQuery($categoryId: Int!) {
-      site {
-        categoryTree(rootEntityId: $categoryId) {
+const SubcategoriesQuery = graphql(`
+  query SubcategoriesQuery($categoryId: Int!) {
+    site {
+      categoryTree(rootEntityId: $categoryId) {
+        entityId
+        children {
           entityId
-          children {
-            entityId
-            name
-            path
-            image {
-              altText
-              url: urlTemplate(lossy: true)
-            }
-            productCount
+          name
+          path
+          image {
+            altText
+            url: urlTemplate(lossy: true)
           }
+          productCount
         }
       }
     }
-  `
-);
+  }
+`);
 
 // Run the GraphQL query and return the structured data from the response tree
 export const getSubcategories = cache(
-  async (
-    variables: VariablesOf<typeof SubcategoriesQuery>,
-    customerAccessToken?: string
-  ) => {
+  async (variables: VariablesOf<typeof SubcategoriesQuery>, customerAccessToken?: string) => {
     const response = await client.fetch({
       document: SubcategoriesQuery,
       variables,
@@ -41,5 +36,5 @@ export const getSubcategories = cache(
     });
 
     return response.data.site.categoryTree[0]?.children ?? [];
-  }
+  },
 );
