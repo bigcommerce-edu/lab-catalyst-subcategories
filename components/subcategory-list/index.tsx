@@ -12,13 +12,21 @@ export const SubcategoryList = ({
   subcategories: Awaited<ReturnType<typeof getSubcategories>>;
 }) => {
   return (
-    <div className="mx-auto max-w-screen-2xl px-4 py-10 @container @xl:px-6 @xl:py-14 @4xl:px-8 @4xl:py-12">
-      <h1 className="font-heading text-3xl font-medium leading-none text-subcategoryListHeading @lg:text-4xl @2xl:text-5xl">
+    <div className="@container
+      mx-auto max-w-screen-2xl px-4 py-10
+      @xl:px-6 @xl:py-14 @4xl:px-8 @4xl:py-12"
+    >
+      <h1 className="font-heading
+        text-3xl font-medium leading-none
+        @lg:text-4xl @2xl:text-5xl
+        text-subcategoryListHeading"
+      >
         {title}
       </h1>
       <div className="my-4 w-full @container">
-        <div
-          className="mx-auto grid grid-cols-1 gap-4 @lg:grid-cols-2 @2xl:grid-cols-3"
+        <div className="mx-auto
+          grid grid-cols-1 gap-4
+          @lg:grid-cols-2 @2xl:grid-cols-3"
           style={
             // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
             {
